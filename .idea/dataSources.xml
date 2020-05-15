@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="graphnotes@localhost" uuid="d0bb3a83-ad27-4e8e-b68d-d4417c83ada6">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/graphnotes</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="statistique@localhost" uuid="834cc04b-2e4c-490b-9e91-e1aa82acc391">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/statistique</jdbc-url>
+    </data-source>
+  </component>
+</project>
