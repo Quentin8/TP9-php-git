@@ -39,18 +39,12 @@ $blanc = imagecolorallocate($image, 255, 255, 255);
 imagestring($image, 4, 300, 5, "Notes des etudiants E1 et E2", $noir);
 imagestring($image, 4, 550, 260, "Moyenne des notes de E1 : ".$moyenneEtd1/$result1['count'] , $noir);
 imagestring($image, 4, 550, 280, "Moyenne des notes de E2 : ".$moyenneEtd2/$result2['count'] , $noir);
+imagestring($image, 4, 10, 200, "E1" , $blanc);
+imagestring($image, 4, 50, 200, "E2" , $bleu);
+
 $precedentX = 0;
 $precedentY = 150;
 $precedentY = $resultNotes1[0]['note'];
-if($precedentY == 10){
-    $precedentY = 150;
-}
-if($precedentY > 10 ){
-    $precedentY = 150 -($precedentY - 10)*10;//fois 10 pour faire en sort que plus lisible
-}
-if($precedentY<10){
-    $precedentY = 150 +  (10 - $precedentY)*10;
-}
 $multiplicateur1 = 800/$result1['count'];
 $i = 1;
 foreach ($resultNotes1 as $note){
@@ -59,28 +53,24 @@ foreach ($resultNotes1 as $note){
         $y = 0;
     }
     if($y > 10 ){
-        $y = ($y - 10)*10;//fois 10 pour faire en sort que plus lisible
+        $y = ($y - 10)*3;//fois 10 pour faire en sort que plus lisible
     }
     if($y<10){
-        $y = (10 - $y)*10;
+        $y = (10 - $y)*3;
     }
-    imageline($image,$precedentX,$precedentY,$i*$multiplicateur1,150-$y,$noir);
-    $precedentX = $i*$multiplicateur1;
-    $precedentY = 150-$y;
+    if($i != 1){
+        imageline($image,$precedentX,$precedentY,$i*$multiplicateur1,150-$y,$blanc);
+        $precedentX = $i*$multiplicateur1;
+        $precedentY = 150-$y;
+    }else{
+        $precedentY = 150-$y;
+    }
+
     $i++;
 }
 $i = 1;
 $precedentX = 0;
 $precedentY = $resultNotes2[0]['note'];
-if($precedentY == 10){
-    $precedentY = 150;
-}
-if($precedentY > 10 ){
-    $precedentY = 150 -($precedentY - 10)*10;//fois 10 pour faire en sort que plus lisible
-}
-if($precedentY<10){
-    $precedentY = 150 +  (10 - $precedentY)*10;
-}
 
 foreach ($resultNotes2 as $note){
     $y = $note['note'];
@@ -88,14 +78,19 @@ foreach ($resultNotes2 as $note){
         $y = 0;
     }
     if($y > 10 ){
-        $y = ($y - 10)*10;//fois 10 pour faire en sort que plus lisible
+        $y = ($y - 10)*3;//fois 10 pour faire en sort que plus lisible
     }
     if($y<10){
-        $y = -(10 - $y)*10;
+        $y = -(10 - $y)*3;
     }
-    imageline($image,$precedentX,$precedentY,$i*$multiplicateur1,150-$y,$bleu);
-    $precedentX = $i*$multiplicateur1;
-    $precedentY = 150-$y;
+    if($i != 1){
+        imageline($image,$precedentX,$precedentY,$i*$multiplicateur1,150-$y,$bleu);
+        $precedentX = $i*$multiplicateur1;
+        $precedentY = 150-$y;
+    }else{
+        $precedentY = 150-$y;
+    }
+
     $i++;
 }
 imagepng($image);
